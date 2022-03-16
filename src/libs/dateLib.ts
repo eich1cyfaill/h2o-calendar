@@ -12,12 +12,12 @@ export const callCalendar = (): any => {
         if(randomNumber >= 0.6){
             return [
                 'Пр.науки, д.26, кв.24',
-                'Пр.науки, д.26, кв.24'
+                'Кудрово, ул. Ленинградская, д.46'
             ]
         }
         if(randomNumber > 0.4 && randomNumber < 0.6){
             return [
-                'Пр.науки, д.26, кв.24'
+                'ул. Некрасова, д. 60'
             ]
         }
         if(randomNumber <= 0.4){
@@ -28,7 +28,7 @@ export const callCalendar = (): any => {
     let setRemakeDates = (randomNumber: number) => {
         if(randomNumber > 0.6 && randomNumber <= 0.9){
             return [
-                'Пр.науки, д.26, кв.24'
+                'ул. Жукова, д. 3А, кв. 191'
             ]
         }
         if(randomNumber > 0.2 && randomNumber <= 0.6){
@@ -36,8 +36,8 @@ export const callCalendar = (): any => {
         }
         if(randomNumber <= 0.2){
             return [
-                'Пр.науки, д.26, кв.24',
-                'Пр.науки, д.26, кв.24'
+                'Петровский проспект, д. 22, кв. 17',
+                'Авангардская ул. д.26, кв.1'
             ]
         }
     }

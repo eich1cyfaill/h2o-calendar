@@ -6,6 +6,7 @@
   font-weight: 500
   margin-top: 5px
   transition-duration: .3s
+  white-space: nowrap
   &:hover
     cursor: pointer
     transition-duration: .3s
@@ -101,7 +102,7 @@ header
     &_days
       display: grid
       height: 100%
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+      grid-template-columns: 200px 200px 200px 200px 200px 200px 200px
     &_item
       border-top: 2px solid $mainGrey
       border-right: 2px solid $mainGrey
@@ -116,6 +117,7 @@ header
       font-weight: 300
     &_list
       margin: 0 5px
+      overflow: hidden
     &_free
       @extend %taskTemplate
       background: rgba(blue, 0.2)
