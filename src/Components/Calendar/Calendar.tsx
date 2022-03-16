@@ -9,7 +9,7 @@ const Calendar = () => {
     const [currentDateList, setCurrentDateList] = useState("today")
     const [days, setDays] = useState([1])
     const [month, setMonth] = useState(null)
-    const [filter, setFilter] = useState("remake")
+    const [filter, setFilter] = useState(null)
 
 
     useEffect(() => {
@@ -17,9 +17,6 @@ const Calendar = () => {
         setMonth(callCalendar().month)
     }, [])
 
-    useEffect(() => {
-        getFilteredDays(filter)
-    }, [filter])
 
     const prevMonth = () => {
         let {days, month} = turnPrevMonth()
@@ -37,23 +34,6 @@ const Calendar = () => {
     const setDataList = (typeList: string) => {
         setCurrentDateList(typeList)
     }
-
-    const getFilteredDays = (type: string | null) => {
-        debugger
-        switch(type){
-            case "free":
-                return days.filter((el:any) => el.freeDate)
-            case "clean":
-                return days.filter((el:any) => el.cleaningDates)
-            case "remake":
-                return days.filter((el:any) => el.remakeDates)
-            default:
-                return days
-        }
-    }
-
-    const filteredDays = getFilteredDays(filter)
-    debugger
 
     return (
         <div className={cl.root}>
