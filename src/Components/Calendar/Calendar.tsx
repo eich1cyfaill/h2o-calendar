@@ -88,16 +88,16 @@ const Calendar = () => {
                              <div key={Math.random()} className={cl.calendar__table_item}>
                                  <div className={cl.calendar__tableItem_date}>{el.date}</div>
                                  <div className={cl.calendar__tableItem_list}>
-                                     {el.freeDate ? <div className={cl.free} style={(filter == "free" || filter == null) ? {visibility: "visible"} : {visibility: "hidden"}}>Свободная дата</div> : null}
-                                     {el.cleaningDates ? el.cleaningDates.map((address: string) => <div className={cl.clean} style={(filter == "clean" || filter == null) ? {visibility: "visible"} : {visibility: "hidden"}}>{address}</div>) : null}
-                                     {el.remakeDates ? el.remakeDates.map((address: string) => <div className={cl.remake} style={(filter == "remake" || filter == null) ? {visibility: "visible"} : {visibility: "hidden"}}>{address}</div>) : null}
+                                     {el.freeDate ? <div className={cl.calendar__tableItem_free} style={(filter == "free" || filter == null) ? {visibility: "visible"} : {visibility: "hidden"}}>Свободная дата</div> : null}
+                                     {el.cleaningDates ? el.cleaningDates.map((address: string) => <div className={cl.calendar__tableItem_clean} style={(filter == "clean" || filter == null) ? {visibility: "visible"} : {visibility: "hidden"}}>{address}</div>) : null}
+                                     {el.remakeDates ? el.remakeDates.map((address: string) => <div className={cl.calendar__tableItem_remake} style={(filter == "remake" || filter == null) ? {visibility: "visible"} : {visibility: "hidden"}}>{address}</div>) : null}
                                  </div>
                              </div>
                          )}
                      </div>
                  </section>
              </main>
-            <CalendarSettings days={days} month={month} prevMonth={prevMonth} nextMonth={nextMonth} setFilter={setFilter}/>
+            <CalendarSettings days={days} month={month} prevMonth={prevMonth} nextMonth={nextMonth} filter={filter} setFilter={setFilter}/>
         </div>
     );
 };

@@ -3,6 +3,15 @@ import { Form } from 'react-bootstrap';
 import cl from '../../../Styles/CalendarSettings.module.sass'
 
 const CalendarSettings = (props: any) => {
+
+    const toggleFilter = (filter: string) => {
+        if(props.filter == filter){
+            props.setFilter(null)
+        } else {
+            props.setFilter(filter)
+        }
+    }
+
     return (
         <div className={cl.root}>
             <section className={cl.calendarSettings__mini}>
@@ -66,9 +75,9 @@ const CalendarSettings = (props: any) => {
             <section>
                 <h3>Уборки</h3>
                 <div className={cl.calendarSettings__cleaningFamily}>
-                    <div className={`${cl.calendarSettings__cleaningFamily_item} ${cl.cleaning}`} onClick={() => props.setFilter("clean")}><i className="fa-solid fa-droplet"></i> Уборка</div>
-                    <div className={`${cl.calendarSettings__cleaningFamily_item} ${cl.remakes}`} onClick={() => props.setFilter("remake")}><i className="fa-solid fa-rotate-right"></i> Переделка</div>
-                    <div className={`${cl.calendarSettings__cleaningFamily_item} ${cl.freeDays}`} onClick={() => props.setFilter("free")}><i className="fa-solid fa-layer-group"></i> Свободная дата</div>
+                    <div className={`${cl.calendarSettings__cleaningFamily_item} ${cl.cleaning}`} onClick={() => toggleFilter("clean")}><i className="fa-solid fa-droplet"></i> Уборка</div>
+                    <div className={`${cl.calendarSettings__cleaningFamily_item} ${cl.remakes}`} onClick={() => toggleFilter("remake")}><i className="fa-solid fa-rotate-right"></i> Переделка</div>
+                    <div className={`${cl.calendarSettings__cleaningFamily_item} ${cl.freeDays}`} onClick={() => toggleFilter("free")}><i className="fa-solid fa-layer-group"></i> Свободная дата</div>
                 </div>
             </section>
         </div>

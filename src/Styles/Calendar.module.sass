@@ -1,5 +1,15 @@
 @import './styleAssets/variables.sass'
 
+%taskTemplate
+  border-radius: 25px
+  padding: 0 5px
+  font-weight: 500
+  margin-top: 5px
+  transition-duration: .3s
+  &:hover
+    cursor: pointer
+    transition-duration: .3s
+
 .root
   display: grid
   width: 100%
@@ -97,7 +107,6 @@ header
       border-right: 2px solid $mainGrey
       &:nth-child(7n)
         border-right: none
-
   &__tableItem
     &_date
       display: flex
@@ -105,10 +114,26 @@ header
       align-items: center
       color: $mainGrey2
       font-weight: 300
-
-.free
-  color: blue
-.clean
-  color: green
-.remake
-  color: red
+    &_list
+      margin: 0 5px
+    &_free
+      @extend %taskTemplate
+      background: rgba(blue, 0.2)
+      color: blue
+      &:hover
+        background: blue
+        color: white
+    &_clean
+      @extend %taskTemplate
+      background: rgba(#90EE90, 0.2)
+      color: lightgreen
+      &:hover
+        background: lightgreen
+        color: white
+    &_remake
+      @extend %taskTemplate
+      background: rgba(deeppink, 0.1)
+      color: deeppink
+      &:hover
+        background: deeppink
+        color: white

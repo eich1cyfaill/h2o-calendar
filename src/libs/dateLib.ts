@@ -9,35 +9,33 @@ export const callCalendar = (): any => {
 
 
     let setCleaningDates = (randomNumber: number) => {
-        if(randomNumber >= 0.6 && randomNumber <= 0.7){
+        if(randomNumber >= 0.6){
             return [
-                'Пр.науки, д.26, кв.24',
                 'Пр.науки, д.26, кв.24',
                 'Пр.науки, д.26, кв.24'
             ]
         }
-        if(randomNumber > 0.7 && randomNumber <= 0.99){
+        if(randomNumber > 0.4 && randomNumber < 0.6){
             return [
                 'Пр.науки, д.26, кв.24'
             ]
         }
-        if(randomNumber < 0.4){
+        if(randomNumber <= 0.4){
             return null
         }
     }
 
     let setRemakeDates = (randomNumber: number) => {
-        if(randomNumber >= 0.2 && randomNumber <= 0.4){
+        if(randomNumber > 0.6 && randomNumber <= 0.9){
             return [
                 'Пр.науки, д.26, кв.24'
             ]
         }
-        if(randomNumber > 0.4 && randomNumber <= 0.99){
+        if(randomNumber > 0.2 && randomNumber <= 0.6){
             return null
         }
-        if(randomNumber < 0.2){
+        if(randomNumber <= 0.2){
             return [
-                'Пр.науки, д.26, кв.24',
                 'Пр.науки, д.26, кв.24',
                 'Пр.науки, д.26, кв.24'
             ]
