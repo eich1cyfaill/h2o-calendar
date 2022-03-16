@@ -7,6 +7,51 @@ export const callCalendar = (): any => {
     let nextMonthFirstDays = 7 - currentMonthLastDayIndex
 
 
+
+    let setCleaningDates = (randomNumber: number) => {
+        if(randomNumber >= 0.6 && randomNumber <= 0.7){
+            return [
+                'Пр.науки, д.26, кв.24',
+                'Пр.науки, д.26, кв.24',
+                'Пр.науки, д.26, кв.24'
+            ]
+        }
+        if(randomNumber > 0.7 && randomNumber <= 0.99){
+            return [
+                'Пр.науки, д.26, кв.24'
+            ]
+        }
+        if(randomNumber < 0.4){
+            return null
+        }
+    }
+
+    let setRemakeDates = (randomNumber: number) => {
+        if(randomNumber >= 0.2 && randomNumber <= 0.4){
+            return [
+                'Пр.науки, д.26, кв.24'
+            ]
+        }
+        if(randomNumber > 0.4 && randomNumber <= 0.99){
+            return null
+        }
+        if(randomNumber < 0.2){
+            return [
+                'Пр.науки, д.26, кв.24',
+                'Пр.науки, д.26, кв.24',
+                'Пр.науки, д.26, кв.24'
+            ]
+        }
+    }
+
+    let setFreeTime = (randomNumber: number) => {
+        if(setCleaningDates(randomNumber) || setRemakeDates(randomNumber)){
+            return false
+        } else {
+            return true
+        }
+    }
+
     let getLastDay = () => {
         let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
         return lastDay
@@ -41,7 +86,8 @@ export const callCalendar = (): any => {
     let monthDays = () => {
         let days = []
         for (let i = 1; i <= getLastDay(); i++){
-            days.push(i)
+            let niceRandom = Math.random()
+            days.push({date: i, cleaningDates:setCleaningDates(niceRandom), remakeDates: setRemakeDates(niceRandom), freeDate: setFreeTime(niceRandom)})
         }
         return days
     }
@@ -49,15 +95,17 @@ export const callCalendar = (): any => {
     let daysBeforeMonth = () => {
         let days = []
         for (let i = firstDayIndex(); i > 0; i--){
-            days.push(prevMonthLastDay - i + 1)
+            let niceRandom = Math.random()
+            days.push({date: prevMonthLastDay - i + 1, cleaningDates:setCleaningDates(niceRandom), remakeDates: setRemakeDates(niceRandom), freeDate: setFreeTime(niceRandom)})
         }
         return days
     }
 
     let daysAfterMonth = () => {
+        let niceRandom = Math.random()
         let days = []
         for(let i = 1; i <= nextMonthFirstDays; i++){
-            days.push(i)
+            days.push({date: i, cleaningDates:setCleaningDates(niceRandom), remakeDates: setRemakeDates(niceRandom), freeDate: setFreeTime(niceRandom)})
         }
         return days
     }

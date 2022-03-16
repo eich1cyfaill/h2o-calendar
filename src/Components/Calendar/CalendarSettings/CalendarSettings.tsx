@@ -24,9 +24,9 @@ const CalendarSettings = (props: any) => {
                         <li>Вс</li>
                     </ul>
                     <div className={cl.calendarSettings__mini_table}>
-                        {props.days?.map((el: number) =>
+                        {props.days?.map((el: any) =>
                             <div key={Math.random()} className={cl.calendarSettings__mini_tableItem}>
-                                <div>{el}</div>
+                                <div>{el.date}</div>
                             </div>
                         )}
                     </div>
@@ -66,9 +66,9 @@ const CalendarSettings = (props: any) => {
             <section>
                 <h3>Уборки</h3>
                 <div className={cl.calendarSettings__cleaningFamily}>
-                    <div className={`${cl.calendarSettings__cleaningFamily_item} ${cl.cleaning}`}><i className="fa-solid fa-droplet"></i> Уборка</div>
-                    <div className={`${cl.calendarSettings__cleaningFamily_item} ${cl.remakes}`}><i className="fa-solid fa-rotate-right"></i> Переделка</div>
-                    <div className={`${cl.calendarSettings__cleaningFamily_item} ${cl.freeDays}`}><i className="fa-solid fa-layer-group"></i> Свободная дата</div>
+                    <div className={`${cl.calendarSettings__cleaningFamily_item} ${cl.cleaning}`} onClick={() => props.setFilter("clean")}><i className="fa-solid fa-droplet"></i> Уборка</div>
+                    <div className={`${cl.calendarSettings__cleaningFamily_item} ${cl.remakes}`} onClick={() => props.setFilter("remake")}><i className="fa-solid fa-rotate-right"></i> Переделка</div>
+                    <div className={`${cl.calendarSettings__cleaningFamily_item} ${cl.freeDays}`} onClick={() => props.setFilter("free")}><i className="fa-solid fa-layer-group"></i> Свободная дата</div>
                 </div>
             </section>
         </div>

@@ -9,12 +9,17 @@ const Calendar = () => {
     const [currentDateList, setCurrentDateList] = useState("today")
     const [days, setDays] = useState([1])
     const [month, setMonth] = useState(null)
+    const [filter, setFilter] = useState("remake")
 
 
     useEffect(() => {
         setDays(callCalendar().days)
         setMonth(callCalendar().month)
     }, [])
+
+    useEffect(() => {
+        getFilteredDays(filter)
+    }, [filter])
 
     const prevMonth = () => {
         let {days, month} = turnPrevMonth()
@@ -28,12 +33,27 @@ const Calendar = () => {
         setMonth(month)
     }
 
-    console.log(days, month)
-
 
     const setDataList = (typeList: string) => {
         setCurrentDateList(typeList)
     }
+
+    const getFilteredDays = (type: string | null) => {
+        debugger
+        switch(type){
+            case "free":
+                return days.filter((el:any) => el.freeDate)
+            case "clean":
+                return days.filter((el:any) => el.cleaningDates)
+            case "remake":
+                return days.filter((el:any) => el.remakeDates)
+            default:
+                return days
+        }
+    }
+
+    const filteredDays = getFilteredDays(filter)
+    debugger
 
     return (
         <div className={cl.root}>
@@ -64,15 +84,20 @@ const Calendar = () => {
                          </ul>
                      </div>
                      <div className ={cl.calendar__table_days}>
-                         {days?.map((el: number, index: number) =>
+                         {days?.map((el: any, index: number) =>
                              <div key={Math.random()} className={cl.calendar__table_item}>
-                                 <div className={cl.calendar__tableItem_date}>{el}</div>
+                                 <div className={cl.calendar__tableItem_date}>{el.date}</div>
+                                 <div className={cl.calendar__tableItem_list}>
+                                     {el.freeDate ? <div className={cl.free} style={(filter == "free" || filter == null) ? {visibility: "visible"} : {visibility: "hidden"}}>Свободная дата</div> : null}
+                                     {el.cleaningDates ? el.cleaningDates.map((address: string) => <div className={cl.clean} style={(filter == "clean" || filter == null) ? {visibility: "visible"} : {visibility: "hidden"}}>{address}</div>) : null}
+                                     {el.remakeDates ? el.remakeDates.map((address: string) => <div className={cl.remake} style={(filter == "remake" || filter == null) ? {visibility: "visible"} : {visibility: "hidden"}}>{address}</div>) : null}
+                                 </div>
                              </div>
                          )}
                      </div>
                  </section>
              </main>
-            <CalendarSettings days={days} month={month} prevMonth={prevMonth} nextMonth={nextMonth}/>
+            <CalendarSettings days={days} month={month} prevMonth={prevMonth} nextMonth={nextMonth} setFilter={setFilter}/>
         </div>
     );
 };
