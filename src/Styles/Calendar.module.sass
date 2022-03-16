@@ -3,15 +3,15 @@
 .root
   display: grid
   width: 100%
-  grid-template-columns: 80fr 20fr
-  background: aqua
-
+  height: 100%
+  grid-template-columns: 75fr 25fr
+  background: linear-gradient(90deg, $mainAqua, white, white)
 
 main
   width: available
   border-top-left-radius: 25px
+  border-top-right-radius: 25px
   background: #ECECEC
-  height: 100vh
   padding: 20px
 
 header
@@ -43,7 +43,7 @@ header
       display: flex
       border-radius: 25px
       box-shadow: 0px 0px 10px 1px grey
-      color: grey
+      color: $mainGrey2
       justify-content: space-around
       padding: 3px 5px
       background: white
@@ -65,13 +65,43 @@ header
 
 .calendar
   &__table
+    width: available
+    background: white
+    border-radius: 10px
+    height: 85vh
+    display: flex
+    flex-direction: column
     &_headings
       width: 100%
       ul
         display: grid
+        height: 100%
+        padding: 0
+        margin: 0
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+        text-align: center
         li
           list-style: none
+          border-right: 2px solid $mainGrey
+          padding: 1vh 0
+          color: $mainGrey2
+          font-weight: 400
+          &:last-child
+            border-right: none
     &_days
       display: grid
+      height: 100%
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+    &_item
+      border-top: 2px solid $mainGrey
+      border-right: 2px solid $mainGrey
+      &:nth-child(7n)
+        border-right: none
+
+  &__tableItem
+    &_date
+      display: flex
+      justify-content: center
+      align-items: center
+      color: $mainGrey2
+      font-weight: 300

@@ -1,4 +1,140 @@
+@import './styleAssets/variables.sass'
+
+%settingFamilyButtons
+  display: flex
+  width: 350px
+  flex-wrap: wrap
+
+%settingFamilyItem
+  border: 1px solid $mainGrey2
+  padding: 5px 20px
+  margin: 5px
+  border-radius: 25px
+  font-weight: 500
+  transition-duration: .3s
+  &:hover
+    cursor: pointer
+    transition-duration: .3s
+
 .root
-  background: bisque
+  background: white
   height: 100vh
   width: available
+  padding: 5px 20px
+  display: grid
+  grid-template-rows: 30fr 25fr 20fr 20fr
+.calendarSettings
+  &__mini
+    background: $mainGrey
+    height: 100%
+    padding: 5px
+    &_date
+      display: flex
+      margin: 20px 35px 25px
+      justify-content: space-around
+      align-items: center
+      i:hover
+        cursor: pointer
+    &_headings
+      ul
+        margin-bottom: 10px
+        padding: 0
+        display: grid
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+        li
+          list-style: none
+          border-radius: 50%
+          display: flex
+          align-items: center
+          justify-content: center
+          font-weight: 600
+    &_table
+      display: grid
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr
+      place-items: center
+      height: 100%
+    &_tableItem
+      border-radius: 150px
+      align-self: center
+      display: flex
+      align-items: center
+      justify-content: center
+      width: 30px
+      height: 10px
+      padding: 15px 5px
+      &:hover
+        background: $mainGrey2
+        cursor: pointer
+
+  &__dropdownFamily
+    display: flex
+    flex-direction: column
+  &__taskFamily
+    @extend %settingFamilyButtons
+    &_item
+      @extend %settingFamilyItem
+
+  &__typeEvent
+    margin-top: 10px
+  &__cleaningFamily
+    @extend %settingFamilyButtons
+    &_item
+      @extend %settingFamilyItem
+
+
+
+.task
+  color: violet
+  &:hover
+    background: violet
+    color: white
+    border-color: violet
+.sell
+  color: blueviolet
+  &:hover
+    background: blueviolet
+    color: white
+    border-color: blueviolet
+.cleaningTask
+  color: #7FC4C4
+  &:hover
+    background: #7FC4C4
+    color: white
+    border-color: #7FC4C4
+.reports
+  color: blue
+  &:hover
+    background: blue
+    color: white
+    border-color: blue
+.control
+  color: orange
+  &:hover
+    background: orange
+    color: white
+    border-color: orange
+
+.cleaning
+  border-color: lightgreen
+  color: lightgreen
+  background: rgba(#90EE90, 0.2)
+  &:hover
+    background: lightgreen
+    color: white
+
+.remakes
+  border-color: deeppink
+  color: deeppink
+  background: rgba(deeppink, 0.1)
+  &:hover
+    background: deeppink
+    color: white
+
+.freeDays
+  border-color: blue
+  color: blue
+  background: rgba(blue, 0.2)
+  &:hover
+    background: blue
+    color: white

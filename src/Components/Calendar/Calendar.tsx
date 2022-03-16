@@ -1,26 +1,47 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import CalendarSettings from "./CalendarSettings/CalendarSettings";
 import cl from '../../Styles/Calendar.module.sass'
-import "../../libs/dateLib";
-import {DateLib} from "../../libs/dateLib";
+import  "../../libs/dateLib";
+import { callCalendar, turnNextMonth, turnPrevMonth } from '../../libs/dateLib';
 
 const Calendar = () => {
+
     const [currentDateList, setCurrentDateList] = useState("today")
-    let Date = new DateLib()
+    const [days, setDays] = useState([1])
+    const [month, setMonth] = useState(null)
+
+
+    useEffect(() => {
+        setDays(callCalendar().days)
+        setMonth(callCalendar().month)
+    }, [])
+
+    const prevMonth = () => {
+        let {days, month} = turnPrevMonth()
+        setDays(days)
+        setMonth(month)
+    }
+
+    const nextMonth = () => {
+        let {days, month} = turnNextMonth()
+        setDays(days)
+        setMonth(month)
+    }
+
+    console.log(days, month)
+
 
     const setDataList = (typeList: string) => {
         setCurrentDateList(typeList)
     }
 
-    console.log(Date.fullDayShowings)
-
     return (
         <div className={cl.root}>
              <main>
                  <header>
-                     <div className={cl.header__arrow}><i className="fa-solid fa-angle-left"></i></div>
-                     <div className={cl.header__arrow}><i className="fa-solid fa-angle-right"></i></div>
-                     <div className={cl.header__month}>{Date.currentMonth} 2022</div>
+                     <div className={cl.header__arrow} onClick={() => prevMonth()}><i className="fa-solid fa-angle-left"></i></div>
+                     <div className={cl.header__arrow} onClick={() => nextMonth()}><i className="fa-solid fa-angle-right"></i></div>
+                     <div className={cl.header__month}>{month} 2022</div>
                      <div className={cl.header__properties}>
                          <ul>
                              <li className={`${currentDateList == "today" ? cl.active : null}`} onClick={()=>setDataList("today")}>Сегодня</li>
@@ -43,15 +64,18 @@ const Calendar = () => {
                          </ul>
                      </div>
                      <div className ={cl.calendar__table_days}>
-                         {Date.fullDayShowings.map(el =>
-                             <div>{el}</div>
+                         {days?.map((el: number, index: number) =>
+                             <div key={Math.random()} className={cl.calendar__table_item}>
+                                 <div className={cl.calendar__tableItem_date}>{el}</div>
+                             </div>
                          )}
                      </div>
                  </section>
              </main>
-            <CalendarSettings />
+            <CalendarSettings days={days} month={month} prevMonth={prevMonth} nextMonth={nextMonth}/>
         </div>
     );
 };
 
 export default Calendar;
+

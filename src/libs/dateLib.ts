@@ -1,27 +1,20 @@
-// export function dateLib(){
-//     let date = new Date()
-//     const monthsArray = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
-//     let getLastDay = () => {
-//         let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0)
-//         return lastDay
-//     }
-// }
+export const date = new Date()
 
-export class DateLib {
-    _date = new Date()
-    monthsArray = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
-    prevMonthLastDay = new Date(this._date.getFullYear(), this._date.getMonth(), 0).getDate()
-    currentMonthLastDayIndex = new Date(this._date.getFullYear(), this._date.getMonth()+ 1, 0).getDay()
-    nextMonthFirstDays = 7 - this.currentMonthLastDayIndex
+export const callCalendar = (): any => {
+    let monthsArray = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
+    let prevMonthLastDay = new Date(date.getFullYear(), date.getMonth(), 0).getDate()
+    let currentMonthLastDayIndex = new Date(date.getFullYear(), date.getMonth()+ 1, 0).getDay()
+    let nextMonthFirstDays = 7 - currentMonthLastDayIndex
 
-    get lastDay() {
-        let lastDay = new Date(this._date.getFullYear(), this._date.getMonth() + 1, 0).getDate()
+
+    let getLastDay = () => {
+        let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
         return lastDay
     }
 
-    get firstDayIndex() {
-        this._date.setDate(1)
-        const index = this._date.getDay()
+    let firstDayIndex = () => {
+        date.setDate(1)
+        const index = date.getDay()
         switch(index){
             case 0:
                 return 6
@@ -41,36 +34,49 @@ export class DateLib {
         return index
     }
 
-    get currentMonth(): string{
-        return this.monthsArray[this._date.getMonth()]
+    let currentMonth = () => {
+        return monthsArray[date.getMonth()]
     }
 
-    get monthDays() {
+    let monthDays = () => {
         let days = []
-        for (let i = 1; i <= this.lastDay; i++){
+        for (let i = 1; i <= getLastDay(); i++){
             days.push(i)
         }
         return days
     }
 
-    get daysBeforeMonth() {
+    let daysBeforeMonth = () => {
         let days = []
-        for (let i = this.firstDayIndex; i > 0; i--){
-            days.push(this.prevMonthLastDay - i + 1)
+        for (let i = firstDayIndex(); i > 0; i--){
+            days.push(prevMonthLastDay - i + 1)
         }
         return days
     }
 
-    get daysAfterMonth() {
+    let daysAfterMonth = () => {
         let days = []
-        for(let i = 1; i <= this.nextMonthFirstDays; i++){
+        for(let i = 1; i <= nextMonthFirstDays; i++){
             days.push(i)
         }
         return days
     }
 
-    get fullDayShowings() {
-        let days = [...this.daysBeforeMonth, ...this.monthDays, ...this.daysAfterMonth]
+    let fullDayShowings = () => {
+        let days = [...daysBeforeMonth(), ...monthDays(), ...daysAfterMonth()]
         return days
     }
+
+
+    return {days: fullDayShowings(), month: currentMonth()}
 }
+
+    export let turnNextMonth = () => {
+        date.setMonth(date.getMonth() + 1)
+        return callCalendar()
+    }
+
+    export let turnPrevMonth = () => {
+        date.setMonth(date.getMonth() - 1)
+        return callCalendar()
+    }
